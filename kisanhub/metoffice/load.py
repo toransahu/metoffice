@@ -49,6 +49,7 @@ def csv_to_weather(data_loc):
 
 def create_or_update(aregion, aseason, ayear, attribute, val):
     """Create or Update record in DB"""
+    
 
     # check for the unique row (region,season,year)
     record = Climate.objects.filter(region=aregion, season=aseason, year=ayear)
@@ -86,8 +87,10 @@ def create_or_update(aregion, aseason, ayear, attribute, val):
 
 def csv_to_climate(data_loc):
     """Save data from CSV to DB"""
-    #data_loc = "../data"
-    #data_loc = "..\..\data"
+    
+    # delete old records
+    Climate.objects.all().delete()
+    
     files = [file for file in list_files(data_loc) if file.endswith('.csv')]
     cons_csv = os.path.join(data_loc,'consolidated.csv')
     if cons_csv in files:
