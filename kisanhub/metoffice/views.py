@@ -98,20 +98,20 @@ def graph_weather(request):
 
 
 def main(request):
-    """ Download, Extract, Clean, Trasform, Load data."""
+    """ Download, Extract, Clean, Transform, and Load data."""
     regions = ['UK', 'England', 'Wales', 'Scotland']
     attributes = ['Tmax', 'Tmin', 'Tmean', 'Sunshine', 'Rainfall']
 
     # check in which pc i'm working
     if platform.system() == 'Windows':
         # data_loc = "D:\Toran\WorkSpace\practice\interview\kisanhub\data"
-        data_loc = "/data"
+        data_loc = "./data"
         proxies = {
             "http": "http://toran.sahu:L440Qthink@10.74.91.103:80",
             "https": "http://toran.sahu:L440Qthink@10.74.91.103:80",
         }
     else:
-        data_loc = "/data"
+        data_loc = "./data"
         proxies = {
             "http": None,
             "https": None,

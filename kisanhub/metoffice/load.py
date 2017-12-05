@@ -99,7 +99,9 @@ def csv_to_climate(data_loc):
     #data_loc = "../data"
     #data_loc = "..\..\data"
     files = [file for file in list_files(data_loc) if file.endswith('.csv')]
-    files.pop(os.path.join(data_loc,'consolidated.csv'))
+    cons_csv = os.path.join(data_loc,'consolidated.csv')
+    if cons_csv in files:
+        files.remove(cons_csv)
 
     for file in files:
         attribute, region = (os.path.splitext(basename(file))[0]).split('_')
