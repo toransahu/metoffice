@@ -1,0 +1,4 @@
+django-adaptors
+lxml
+django-graphos
+pandas
