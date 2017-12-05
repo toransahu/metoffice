@@ -29,8 +29,6 @@ def graph_climate(request):
         queryset, fields=['season', 'sunshine'])
 
     # Chart object
-    # chart = LineChart(data_source)
-    # chart = BarChart(data_source)
 
     chart_tmin = ColumnChart(
         data_source_tmin,
@@ -66,7 +64,7 @@ def graph_climate(request):
         'chart_sunshine': chart_sunshine
     }
 
-    template = loader.get_template('store/graphs.html')
+    template = loader.get_template('metoffice/graphs_climate.html')
 
     return HttpResponse(template.render(context, request))
 
@@ -80,23 +78,21 @@ def graph_weather(request):
     queryset = Weather.objects.raw("SELECT * FROM store_weather \
                                    where year>1000 \
                                    and year<9999  \
-                                   and value <999999 \
-                                   group by season,region \
-                                   order by season,region")
+                                   and value <9999 \
+                                   and attribute = 'tmin' \
+                                   order by region, year, season")
 
     #    data_source = ModelDataSource(queryset, fields= ['season', 'tmax', 'tmin', ] )
-    data_source = ModelDataSource(queryset, fields=['season', 'val'])
+    data_source = ModelDataSource(queryset, fields=[ 'season','value'])
 
     # Chart object
-    # chart = LineChart(data_source)
-    # chart = BarChart(data_source)
     chart = ColumnChart(
         data_source, options={
             'title': 'Temperature (Min - 1911-2017)'
         })
 
     context = {'chart': chart}
-    template = loader.get_template('store/graphs.html')
+    template = loader.get_template('metoffice/graphs_weather.html')
 
     return HttpResponse(template.render(context, request))
 
@@ -109,18 +105,18 @@ def main(request):
     # check in which pc i'm working
     if platform.system() == 'Windows':
         # data_loc = "D:\Toran\WorkSpace\practice\interview\kisanhub\data"
-        data_loc = ".\data"
+        data_loc = "/data"
         proxies = {
             "http": "http://toran.sahu:L440Qthink@10.74.91.103:80",
             "https": "http://toran.sahu:L440Qthink@10.74.91.103:80",
         }
     else:
-        data_loc = "./data"
+        data_loc = "/data"
         proxies = {
             "http": None,
             "https": None,
         }
-    
+
     #messages.info(request, 'Three credits remain in your account.')
     print(download_data.__doc__)
     download_data(regions, attributes, data_loc, proxies)
@@ -128,9 +124,10 @@ def main(request):
     clean_data(data_loc)
     print(fwf_to_csv.__doc__)
     fwf_to_csv(data_loc)
-    print(consolidate_data.__doc__)
-    consolidate_data(data_loc)
+    # print(consolidate_data.__doc__)
+    # consolidate_data(data_loc)
     # csv_to_weather(data_loc)
+    print("Data loading to ORM started, please wait till completions.")
     csv_to_climate(data_loc)
     print("Data loaded to ORM")
     return HttpResponse("Data loaded to ORM")
