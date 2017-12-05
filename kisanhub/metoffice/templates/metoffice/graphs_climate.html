@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html >
+   <head>
+      <title>Metoffice-Climate.html</title>
+      <link rel = "stylesheet"
+         type = "text/css"
+         href = "{% static 'store/css/graph.css' %}" />
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script type="text/javascript">
+         google.load("visualization", "1", {packages:["corechart"]});
+      </script>
+      <head>
+   <body>
+      {{ chart_tmin.as_html }}
+      {{ chart_tmax.as_html }}
+      {{ chart_tmeann.as_html }}
+      {{ chart_rainfall.as_html }}
+      {{ chart_sunshine.as_html }}
+   </body>
+</html>
