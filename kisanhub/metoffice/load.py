@@ -99,6 +99,7 @@ def csv_to_climate(data_loc):
     #data_loc = "../data"
     #data_loc = "..\..\data"
     files = [file for file in list_files(data_loc) if file.endswith('.csv')]
+    files.pop(os.path.join(data_loc,'consolidated.csv'))
 
     for file in files:
         attribute, region = (os.path.splitext(basename(file))[0]).split('_')
@@ -123,4 +124,3 @@ def csv_to_climate(data_loc):
                         year = 9999
                     create_or_update(region, season, year, attribute, val)
                     #print(region,season,year, attribute, val)
-
