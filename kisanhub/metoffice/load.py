@@ -13,7 +13,7 @@ from os.path import basename
 from metoffice.lib import list_files
 import os
 
-
+#=========================Not Using this approach==============================
 def delete_all():
     Weather.objects.all().delete()
 
@@ -43,18 +43,8 @@ def csv_to_weather(data_loc):
             except:
                 print("Problem while loading the row", row)
 
+#==============================================================================
 
-# =============================================================================
-# def csv_to_db2(data_loc):
-#     """Save data from CSV to DB"""
-#
-#     # clean the db
-#     delete_all()
-#
-#     # load fresh
-#     file = join(data_loc, 'consolidated.csv')
-#     csv_list = WeatherCsvModel.import_data(data = open(file))
-# =============================================================================
 
 
 def create_or_update(aregion, aseason, ayear, attribute, val):

@@ -68,7 +68,7 @@ def graph_climate(request):
 
     return HttpResponse(template.render(context, request))
 
-
+#===============================Not Using this approach========================
 def graph_weather(request):
 
     # Original DataSource object
@@ -95,7 +95,7 @@ def graph_weather(request):
     template = loader.get_template('metoffice/graphs_weather.html')
 
     return HttpResponse(template.render(context, request))
-
+#==============================================================================
 
 def main(request):
     """ Download, Extract, Clean, Transform, and Load data."""
@@ -124,9 +124,13 @@ def main(request):
     clean_data(data_loc)
     print(fwf_to_csv.__doc__)
     fwf_to_csv(data_loc)
-    # print(consolidate_data.__doc__)
-    # consolidate_data(data_loc)
-    # csv_to_weather(data_loc)
+    
+# =============================Not Using this approach=========================
+#     print(consolidate_data.__doc__)
+#     consolidate_data(data_loc)
+#     csv_to_weather(data_loc)
+# =============================================================================
+    
     print("Data loading to ORM started, please wait till completions.")
     csv_to_climate(data_loc)
     print("Data loaded to ORM")

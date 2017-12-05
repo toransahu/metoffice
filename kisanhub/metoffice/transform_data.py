@@ -39,7 +39,7 @@ def fwf_to_csv(data_loc):
             #skiprows = [0]
         ).to_csv(csv_file)
 
-
+# =============================Not Using this approach=========================
 def consolidate_data(data_loc):
     """Save data from all CSV to single CSV."""
     #data_loc = "./data"
@@ -75,3 +75,4 @@ def consolidate_data(data_loc):
                                 str(year) + ",'" + attribute + "'," + str(val))
                     final.write('\n')
     final.close()
+# =============================================================================
