@@ -15,7 +15,7 @@ class Weather(models.Model):
     attribute = models.CharField(max_length=15)
     season = models.CharField(max_length=4)
     year = models.IntegerField(default=9999)
-    value = models.FloatField(default=999999)
+    value = models.FloatField(default=9999)
 
     class Meta:
         indexes = [
