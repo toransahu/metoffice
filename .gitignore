@@ -104,3 +104,10 @@ ENV/
 
 # pycharm
 .idea/*
+
+*.sqlite3
+
+data/
+src/data/
+
+migrations/
