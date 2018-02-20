@@ -101,3 +101,6 @@ ENV/
 .mypy_cache/
 /kisanhub/metoffice/migrations/
 /kisanhub/data/
+
+# pycharm
+.idea/*
