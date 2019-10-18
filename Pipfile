@@ -10,7 +10,7 @@ name = "pypi"
 lxml = "*"
 django-graphos = "*"
 pandas = "*"
-django = "==1.11"
+django = "==1.11.23"
 numpy = "==1.14.0"
 requests = "*"
 
