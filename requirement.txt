@@ -1,13 +1,14 @@
-certifi==2018.1.18
+-i https://pypi.python.org/simple/
+certifi==2019.11.28
 chardet==3.0.4
-Django==1.11
 django-graphos==0.3.41
+django==1.11.28
 idna==2.6
 lxml==4.1.1
 numpy==1.14.0
 pandas==0.22.0
-python-dateutil==2.6.1
-pytz==2018.3
+python-dateutil==2.8.1
+pytz==2019.3
 requests==2.18.4
-six==1.11.0
+six==1.14.0
 urllib3==1.22
